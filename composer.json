@@ -1,0 +1,37 @@
+{
+  "name": "naxon/laravel-errors",
+  "description": "An error loader based on Laravel's translation loader",
+  "license": "MIT",
+  "homepage": "https://github.com/Naxon/laravel-errors",
+  "support": {
+    "issues": "https://github.com/Naxon/laravel-errors/issues",
+    "source": "https://github.com/Naxon/laravel-errors"
+  },
+  "authors": [
+    {
+      "name": "Daniel Naxon",
+      "email": "naxond@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1.3",
+    "illuminate/contracts": "5.6.*",
+    "illuminate/filesystem": "5.6.*",
+    "illuminate/support": "5.6.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Naxon\\Errors\\": "src"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Naxon\\Errors\\ErrorsServiceProvider"
+      ]
+    }
+  }
+}
