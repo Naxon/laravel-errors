@@ -51,6 +51,10 @@ return [
 ];
 ```
 
+## Testing
+
+Coming soon...
+
 ## Credits
 
 - [Daniel Naxon](https://github.com/naxon)
