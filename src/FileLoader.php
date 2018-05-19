@@ -2,8 +2,8 @@
 
 namespace Naxon\Errors;
 
-use Illuminate\Filesystem\Filesystem;
 use Naxon\Errors\Contracts\Loader;
+use Illuminate\Filesystem\Filesystem;
 
 class FileLoader implements Loader
 {
@@ -101,7 +101,7 @@ class FileLoader implements Loader
      */
     protected function loadNamespaceOverrides(array $lines, string $locale, string $group, string $namespace): array
     {
-        $file = $this->path . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . $namespace . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $group . '.php';
+        $file = $this->path.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.$namespace.DIRECTORY_SEPARATOR.$locale.DIRECTORY_SEPARATOR.$group.'.php';
 
         if ($this->files->exists($file)) {
             return array_replace_recursive($lines, $this->files->getRequire($file));
@@ -121,7 +121,7 @@ class FileLoader implements Loader
      */
     protected function loadPath(string $path, string $locale, string $group): array
     {
-        if ($this->files->exists($full = $path . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $group . '.php')) {
+        if ($this->files->exists($full = $path.DIRECTORY_SEPARATOR.$locale.DIRECTORY_SEPARATOR.$group.'.php')) {
             return $this->files->getRequire($full);
         }
 
@@ -137,12 +137,12 @@ class FileLoader implements Loader
     protected function loadJsonPaths(string $locale): array
     {
         return collect(array_merge($this->jsonPaths, [$this->path]))
-            ->reduce(function($output, $path) use ($locale) {
-                if ($this->files->exists($full = $path . DIRECTORY_SEPARATOR . $locale . '.json')) {
+            ->reduce(function ($output, $path) use ($locale) {
+                if ($this->files->exists($full = $path.DIRECTORY_SEPARATOR.$locale.'.json')) {
                     $decoded = json_decode($this->files->get($full), true);
 
                     if (is_null($decoded) || json_last_error() !== JSON_ERROR_NONE) {
-                        throw new \RuntimeException("Errors file [" . $full . "] contains an invalid JSON structure.");
+                        throw new \RuntimeException('Errors file ['.$full.'] contains an invalid JSON structure.');
                     }
 
                     $output = array_merge($output, $decoded);

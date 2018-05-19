@@ -2,7 +2,7 @@
 
 use Naxon\Errors\Contracts\ErrorLoader;
 
-if (!function_exists('error')) {
+if (! function_exists('error')) {
     /**
      * Translate the given message.
      *

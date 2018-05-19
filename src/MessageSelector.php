@@ -26,7 +26,7 @@ class MessageSelector
 
         $pluralIndex = $this->getPluralIndex($locale, $number);
 
-        if (count($segments) == 1 || !isset($segments[$pluralIndex])) {
+        if (count($segments) == 1 || ! isset($segments[$pluralIndex])) {
             return $segments[0];
         }
 
@@ -43,7 +43,7 @@ class MessageSelector
     private function extract(array $segments, int $number)
     {
         foreach ($segments as $part) {
-            if (!is_null($line = $this->extractFromString($part, $number))) {
+            if (! is_null($line = $this->extractFromString($part, $number))) {
                 return $line;
             }
         }
@@ -90,7 +90,7 @@ class MessageSelector
      */
     private function stripConditions(array $segments): array
     {
-        return collect($segments)->map(function($part) {
+        return collect($segments)->map(function ($part) {
             return preg_replace('/^[\{\[]([^\[\]\{\}]*)[\}\]]/', '', $part);
         })->all();
     }

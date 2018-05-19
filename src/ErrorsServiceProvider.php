@@ -21,7 +21,7 @@ class ErrorsServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-           __DIR__ . '/../config/errors.php' => config_path('errors.php'),
+           __DIR__.'/../config/errors.php' => config_path('errors.php'),
         ], 'config');
     }
 
@@ -34,7 +34,7 @@ class ErrorsServiceProvider extends ServiceProvider
     {
         $this->registerLoader();
 
-        $this->app->singleton('errorLoader', function($app) {
+        $this->app->singleton('errorLoader', function ($app) {
             $loader = $app['errors.loader'];
 
             $locale = $app['config']['app.locale'];
@@ -54,7 +54,7 @@ class ErrorsServiceProvider extends ServiceProvider
      */
     protected function registerLoader(): void
     {
-        $this->app->singleton('errors.loader', function($app) {
+        $this->app->singleton('errors.loader', function ($app) {
             return new FileLoader($app['files'], $app['config']['errors.path']);
         });
     }

@@ -3,12 +3,12 @@
 namespace Naxon\Errors;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
-use Illuminate\Support\NamespacedItemResolver;
 use Illuminate\Support\Str;
-use Illuminate\Support\Traits\Macroable;
-use Naxon\Errors\Contracts\ErrorLoader as ErrorLoaderContract;
+use Illuminate\Support\Collection;
 use Naxon\Errors\Contracts\Loader;
+use Illuminate\Support\Traits\Macroable;
+use Illuminate\Support\NamespacedItemResolver;
+use Naxon\Errors\Contracts\ErrorLoader as ErrorLoaderContract;
 
 class ErrorLoader extends NamespacedItemResolver implements ErrorLoaderContract
 {
@@ -115,7 +115,7 @@ class ErrorLoader extends NamespacedItemResolver implements ErrorLoaderContract
         $locales = $fallback ? $this->localeArray($locale) : [$locale ?: $this->locale];
 
         foreach ($locales as $locale) {
-            if (!is_null($line = $this->getLine($namespace, $group, $locale, $item, $replace))) {
+            if (! is_null($line = $this->getLine($namespace, $group, $locale, $item, $replace))) {
                 break;
             }
         }
@@ -143,7 +143,7 @@ class ErrorLoader extends NamespacedItemResolver implements ErrorLoaderContract
 
         $line = $this->loaded['*']['*'][$locale][$key] ?? null;
 
-        if (!isset($line)) {
+        if (! isset($line)) {
             $fallback = $this->get($key, $replace, $locale);
 
             if ($fallback !== $key) {
@@ -370,7 +370,7 @@ class ErrorLoader extends NamespacedItemResolver implements ErrorLoaderContract
      */
     public function getSelector(): MessageSelector
     {
-        if (!isset($this->selector)) {
+        if (! isset($this->selector)) {
             $this->selector = new MessageSelector;
         }
 
